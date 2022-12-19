@@ -27,7 +27,7 @@ Phase 2 of the project.
 To overcome the challenge mentioned above, we had to perform data cleaning where we got rid of the redundant and unnecessary data. 
 After this the data was in a condition to be worked on.
 
-![My Image]("\Desktop\Physical_Data_Model.jpg")
+![Screenshot_20220612-192627__01]([https://user-images.githubusercontent.com/64611037/173237125-b13c1e7a-e6d5-4d4a-b6d8-6dc49402edef.jpg](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/Physical_Data_Model.jpg))
 
 
 Physical Data Model
