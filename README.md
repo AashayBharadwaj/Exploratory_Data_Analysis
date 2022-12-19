@@ -27,7 +27,7 @@ Phase 2 of the project.
 To overcome the challenge mentioned above, we had to perform data cleaning where we got rid of the redundant and unnecessary data. 
 After this the data was in a condition to be worked on.
 
-<img src="\C:\Users\aasha\OneDrive\Desktop\Physical_Data_Model.jpg" alt="Alt text" title="Optional title">
+<img src="\Users\aasha\OneDrive\Desktop\Physical_Data_Model.jpg" alt="Alt text" title="Optional title">
 
 
 Physical Data Model
