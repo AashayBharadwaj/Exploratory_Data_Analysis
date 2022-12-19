@@ -1,0 +1,168 @@
+#Creating the tables
+
+CREATE TABLE BLOCKCHAINS (
+BLKCH_ID NUMBER PRIMARY KEY,
+BLKCH_NAME varchar2(50) NOT NULL,
+BLKCH_TOKEN varchar2(20) NOT NULL
+);
+
+CREATE TABLE COINS_CIRCULATING (
+CCIR_ID NUMBER PRIMARY KEY,
+BLKCH_ID NUMBER REFERENCES BLOCKCHAINS(BLKCH_ID),
+CCIR_DATE DATE,
+CCIR_COINS NUMBER
+);
+
+CREATE TABLE PRICE_DATA (
+PD_ID NUMBER PRIMARY KEY,
+BLKCH_ID NUMBER REFERENCES BLOCKCHAINS(BLKCH_ID),
+PD_DATE DATE,
+PD_CLOSE_PRICE NUMBER(10,2),
+PD_VOLUME NUMBER DEFAULT '0' NOT NULL
+);
+
+CREATE TABLE DAILY_ACTIVE_USERS (
+DAU_ID NUMBER PRIMARY KEY,
+BLKCH_ID NUMBER REFERENCES BLOCKCHAINS(BLKCH_ID),
+DAU_DATE DATE,
+DAU_ACTIVEADDRESS NUMBER
+);
+
+CREATE TABLE MEDIA_POPULARITY (
+BLKCH_ID NUMBER,
+MP_FOLLOWERS NUMBER,
+constraint PK_T1 primary key (BLKCH_ID),
+constraint FK_T1 foreign key (BLKCH_ID) REFERENCES BLOCKCHAINS (BLKCH_ID)
+);
+
+CREATE TABLE INVESTORS (
+INVESTOR_ID NUMBER PRIMARY KEY,
+INVESTOR_NAME VARCHAR2(50 BYTE),
+AMOUNT_INVESTED NUMBER,
+BLKCH_ID NUMBER REFERENCES BLOCKCHAINS(BLKCH_ID),
+);
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#•	Top cryptocurrencies ranked by price
+
+select bt.blkch_name as CRYPTO_NAME, to_char(MAX(PD.PD_CLOSE_PRICE),'$999999.99') as MAX_CLOSING_PRICE from
+PRICE_DATA PD join BLOCKCHAINS BT
+on PD.blkch_id = bt.blkch_id
+group by bt.blkch_name
+order by 2 desc;
+
+#•	Maximum price and Minimum Price of Bitcoin, Ethereum and BNB
+
+Bitcoin
+select bt.blkch_name AS CRYPTO_NAME, to_char(MAX(PD.PD_CLOSE_PRICE),'$999999.99') as MAX_CLOSE_PRICE, to_char(MIN(PD.PD_CLOSE_PRICE),'$999999.99') as MIN_CLOSE_PRICE from
+PRICE_DATA PD join BLOCKCHAINS BT
+on PD.blkch_id = bt.blkch_id
+group by bt.blkch_name
+having bt.blkch_name = 'BITCOIN';
+
+#Ethereum
+select bt.blkch_name AS CRYPTO_NAME, to_char(MAX(PD.PD_CLOSE_PRICE),'$999999.99') as MAX_CLOSE_PRICE, to_char(MIN(PD.PD_CLOSE_PRICE),'$999999.99') as MIN_CLOSE_PRICE from
+PRICE_DATA PD join BLOCKCHAINS BT
+on PD.blkch_id = bt.blkch_id
+group by bt.blkch_name
+having bt.blkch_name = 'ETHEREUM';
+
+#Binance
+select bt.blkch_name AS CRYPTO_NAME, to_char(MAX(PD.PD_CLOSE_PRICE),'$999999.99') as MAX_CLOSE_PRICE, to_char(MIN(PD.PD_CLOSE_PRICE),'$999999.99') as MIN_CLOSE_PRICE from
+PRICE_DATA PD join BLOCKCHAINS BT
+on PD.blkch_id = bt.blkch_id
+group by bt.blkch_name
+having bt.blkch_name = 'BINANCE COIN '; --- BLANK SPACE ISSUE
+
+#•	Top 10 cryptocurrencies ranked by market cap 
+select blkch.blkch_name , to_char(MAX(ccir.ccir_coins * pd.pd_close_price),'$999999999999999.99') as MAX_MARKETCAP  from 
+COINS_CIRCULATING ccir join PRICE_DATA pd
+on ccir.blkch_id = pd.blkch_id
+join blockchains blkch
+on pd.blkch_id = blkch.blkch_id
+group by blkch.blkch_name
+order by 2 desc;
+
+#•	Cumulative market cap of the top 10 cryptocurrencies
+WITH MARKET_SUM AS
+(
+select blkch.blkch_name , MAX(ccir.ccir_coins * pd.pd_close_price) as MAX_MARKETCAP   from 
+COINS_CIRCULATING ccir join PRICE_DATA pd
+on ccir.blkch_id = pd.blkch_id
+join blockchains blkch
+on pd.blkch_id = blkch.blkch_id
+group by blkch.blkch_name
+order by 2 desc)
+
+SELECT to_char(SUM(MAX_MARKETCAP),'$999999999999999.99') AS "TOTAL AMOUNT INVESTMENTED IN TOP 10 CRYPTO"  FROM MARKET_SUM;
+
+#•	Popularity of diff blockchains/ cryptocurrencies (Assessed by Twitter followers)
+select bk.blkch_name,round(mp.mp_followers) AS TWITTER_FOLLOWERS from 
+MEDIA_POPULARITY mp join blockchains bk
+on mp.blkch_id = bk.blkch_id
+order by 2 desc;
+
+#•	Pricing charts for Bitcoin, Ethereum and Binance
+
+#Bitcoin
+select blkch.blkch_name, pd.pd_date,pd.pd_close_price
+from PRICE_DATA PD join blockchains blkch
+on pd.blkch_id = blkch.blkch_id
+and blkch.BLKCH_ID =1
+order by pd.PD_DATE asc;
+
+#Ethereum
+select blkch.blkch_name, pd.pd_date,pd.pd_close_price
+from PRICE_DATA PD join blockchains blkch
+on pd.blkch_id = blkch.blkch_id
+and blkch.BLKCH_ID =3
+order by pd.PD_DATE asc;
+
+#Binance
+select blkch.blkch_name, pd.pd_date,pd.pd_close_price
+from PRICE_DATA PD join blockchains blkch
+on pd.blkch_id = blkch.blkch_id
+and blkch.BLKCH_ID =6
+order by pd.PD_DATE asc;
+
+#•	Correlation between price and daily active users for Bitcoin and Ethereum 
+
+#Bitcoin
+select blkch.blkch_name,pd.pd_date,pd_close_price,dau.dau_activeaddress from 
+PRICE_DATA pd join DAILY_ACTIVE_USERS dau
+on pd.blkch_id = dau.blkch_id
+and pd.pd_date = dau.dau_date
+and pd.blkch_id = 1
+join blockchains blkch
+on pd.blkch_id = blkch.blkch_id
+order by pd.pd_date;
+
+#Ethereum
+select blkch.blkch_name,pd.pd_date,pd_close_price,dau.dau_activeaddress from 
+PRICE_DATA pd join DAILY_ACTIVE_USERS dau
+on pd.blkch_id = dau.blkch_id
+and pd.pd_date = dau.dau_date
+and pd.blkch_id = 3
+join blockchains blkch
+on pd.blkch_id = blkch.blkch_id
+order by pd.pd_date;
+
+#•	Return of investment table 
+with CTE as (
+select MAX(PD.PD_CLOSE_PRICE) as MAX_CLOSE_PRICE,MIN(PD.PD_CLOSE_PRICE) as MIN_CLOSE_PRICE,bt.blkch_name,inv.amount_invested,inv.investor_name,
+round((inv.amount_invested/MIN(PD.PD_CLOSE_PRICE)),2) as COINS_RECEIVED, 
+(round((inv.amount_invested/MIN(PD.PD_CLOSE_PRICE)),2)) *  MAX(PD.PD_CLOSE_PRICE) as INVESTMENT_RETURNS 
+from PRICE_DATA PD join BLOCKCHAINS BT
+on PD.blkch_id = bt.blkch_id
+join investors inv 
+on inv.blkch_id = pd.blkch_id
+group by bt.blkch_name,inv.amount_invested,inv.investor_name
+order by 1 desc
+)
+select investor_name, amount_invested, blkch_name,ROUND(INVESTMENT_RETURNS,2) AS INVESTMENT_RETURNS  from CTE
+ORDER BY INVESTMENT_RETURNS DESC;
+
+
+
+
+
