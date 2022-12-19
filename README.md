@@ -29,7 +29,7 @@ After this the data was in a condition to be worked on.
 
 
 
-<img src="C:\Users\aasha\OneDrive\Desktop" alt="Alt text" title="Optional title">
+<img src="\Users\aasha\OneDrive\Desktop" alt="Alt text" title="Optional title">
 
 Physical Data Model
 We used SQL developer. We used queries to create tables. We have also used constraints and defined primary keys.
