@@ -2,11 +2,10 @@
 
 Description of project
 
-A cryptocurrency is a digital currency, which is an alternative form of payment created using encryption algorithms. 
-The use of encryption technologies means that cryptocurrencies function both as a currency and as a virtual accounting system. 
-Due to its wide range of use cases it is getting adopted at a tremendous rate. In this project we are doing exploratory data analysis on cryptocurrencies.
-We gathered data from various sources regarding different cryptocurrencies and analyzed them based on various factors. 
-The points we explored are different blockchains, price data of different cryptocurrencies, daily active users, and popularity of different blockchains.
+>Implemented an ETL pipeline to extract, transform and load data from various sources using their respective APIs into a central database using SQL server, enabling efficient and accurate data analysis.
+>Performed complex SQL queries to generate insights on various factors that affect the price of a particular crypto. 
+>Leveraged tableau to illustrate the valuable insights generated from the analysis.
+
 	
 Phase 1 of the project.
 
