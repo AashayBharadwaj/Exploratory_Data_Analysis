@@ -27,6 +27,11 @@ Phase 2 of the project.
 To overcome the challenge mentioned above, we had to perform data cleaning where we got rid of the redundant and unnecessary data. 
 After this the data was in a condition to be worked on.
 
+
+![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/ERD_.jpg)
+
+
+
 ![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/Physical_Data_Model.jpg)
 
 
@@ -49,3 +54,16 @@ Loading: For loading the data we used SQL developer which is a very powerful too
 It provides various functionalities through which we can manage the data at an optimal level.
 
 Once the transformation step is done, we created the required tables which are logically related to each other with a defined relationship between them.
+
+
+![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/BTC_price.jpg)
+
+
+
+
+![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/DAU_Price.jpg)
+
+
+
+
+
