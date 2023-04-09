@@ -55,6 +55,10 @@ It provides various functionalities through which we can manage the data at an o
 Once the transformation step is done, we created the required tables which are logically related to each other with a defined relationship between them.
 
 
+
+![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/BTC_TAB.png)
+
+
 ![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/BTC_price.jpg)
 
 
