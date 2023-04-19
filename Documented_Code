@@ -1,0 +1,53 @@
+-- ##########################################################################################################
+-- TABLE CREATION
+-- ##########################################################################################################
+
+-- Create a table to store information about different blockchains, including their name and token
+CREATE TABLE BLOCKCHAINS (
+    BLKCH_ID NUMBER PRIMARY KEY,     -- unique ID for each blockchain
+    BLKCH_NAME varchar2(50) NOT NULL,     -- name of the blockchain
+    BLKCH_TOKEN varchar2(20) NOT NULL     -- token associated with the blockchain
+);
+
+-- Create a table to store information about circulating coins for each blockchain, including the date and number of coins
+CREATE TABLE COINS_CIRCULATING (
+    CCIR_ID NUMBER PRIMARY KEY,     -- unique ID for each record
+    BLKCH_ID NUMBER REFERENCES BLOCKCHAINS(BLKCH_ID),     -- ID of the associated blockchain
+    CCIR_DATE DATE,     -- date when the coin information was recorded
+    CCIR_COINS NUMBER     -- number of coins in circulation
+);
+
+-- Create a table to store pricing data for each blockchain, including the date, closing price, and trading volume
+CREATE TABLE PRICE_DATA (
+    PD_ID NUMBER PRIMARY KEY,     -- unique ID for each record
+    BLKCH_ID NUMBER REFERENCES BLOCKCHAINS(BLKCH_ID),     -- ID of the associated blockchain
+    PD_DATE DATE,     -- date when the pricing information was recorded
+    PD_CLOSE_PRICE NUMBER(10,2),     -- closing price of the blockchain on that date
+    PD_VOLUME NUMBER DEFAULT '0' NOT NULL     -- trading volume of the blockchain on that date
+);
+
+-- Create a table to store information about daily active users for each blockchain, including the date and number of active users
+CREATE TABLE DAILY_ACTIVE_USERS (
+    DAU_ID NUMBER PRIMARY KEY,     -- unique ID for each record
+    BLKCH_ID NUMBER REFERENCES BLOCKCHAINS(BLKCH_ID),     -- ID of the associated blockchain
+    DAU_DATE DATE,     -- date when the user information was recorded
+    DAU_ACTIVEADDRESS NUMBER     -- number of active addresses on the blockchain on that date
+);
+
+-- Create a table to store information about media popularity for each blockchain, including the number of Twitter followers
+CREATE TABLE MEDIA_POPULARITY (
+    BLKCH_ID NUMBER,
+    MP_FOLLOWERS NUMBER,
+    CONSTRAINT PK_T1 PRIMARY KEY (BLKCH_ID),     -- unique constraint on the blockchain ID
+    CONSTRAINT FK_T1 FOREIGN KEY (BLKCH_ID) REFERENCES BLOCKCHAINS (BLKCH_ID)     -- foreign key constraint on the blockchain ID
+);
+
+-- Create a table to store information about investors for each blockchain, including their name and amount invested
+CREATE TABLE INVESTORS (
+    INVESTOR_ID NUMBER PRIMARY KEY,     -- unique ID for each investor
+    INVESTOR_NAME VARCHAR2(50 BYTE),     -- name of the investor
+    AMOUNT_INVESTED NUMBER,     -- amount invested by the investor
+    BLKCH_ID NUMBER REFERENCES BLOCKCHAINS(BLKCH_ID)     -- ID of the associated blockchain
+);
+
+
