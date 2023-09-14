@@ -75,15 +75,10 @@ Scenario 2 - Negative Correlation: Conversely, during periods of declining daily
 
 By visualizing these relationships in Power BI, stakeholders can quickly grasp how daily active users influence the price of Ethereum, enabling them to make informed decisions based on this key factor. This real-time insight is invaluable for cryptocurrency investors and blockchain project managers seeking to understand and respond to market dynamics.
 
+![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/ETH_PRICE_VS_ACTIVE_USERS.png)
+
 ![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/BTC_TAB.png)
 
-
-![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/BTC_price.jpg)
-
-
-
-
-![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/DAU_Price.jpg)
 
 
 
