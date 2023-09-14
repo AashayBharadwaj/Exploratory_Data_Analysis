@@ -56,6 +56,25 @@ Once the transformation step is done, we created the required tables which are l
 
 
 
+Phase 4 of the project. (Data Analysis and Visualization) With the clean and structured data in our SQL database, we proceeded to analyze it to gain valuable insights into the factors affecting the price of cryptocurrencies. Complex SQL queries were employed to perform various analyses, including trend analysis, correlation studies, and anomaly detection. These analyses helped us identify patterns and relationships between different crypto assets and external factors such as market sentiment, trading volume, and blockchain activity.
+
+To present our findings effectively, we utilized Power BI, a powerful data visualization and business intelligence tool. Power BI allowed us to create interactive and dynamic dashboards and reports that showcased our insights in a visually compelling manner. We designed custom dashboards with various charts, graphs, and heatmaps to provide a holistic view of the cryptocurrency market. This visualization not only made it easier to interpret our findings but also enabled stakeholders to make data-driven decisions in real-time.
+
+As an example of how factors like daily active users can affect the price of Ethereum (ETH), let's consider a scenario:
+
+Suppose we are analyzing the price movement of Ethereum (ETH). In our dataset, we have historical data on Ethereum's price, trading volume, and daily active users of its associated blockchain platform. Using Power BI, we create a dashboard that includes the following visualizations:
+
+Price Trend Chart: A line chart that displays the historical price of Ethereum (ETH) over time.
+Daily Active Users (DAU) Chart: A bar chart showing the number of daily active users on the Ethereum blockchain platform.
+Trading Volume Chart: A bar chart illustrating the daily trading volume of Ethereum.
+Upon analyzing these visualizations, we notice a correlation between the price of Ethereum and its daily active users. Here's how this correlation could work:
+
+Scenario 1 - Positive Correlation: In periods where Ethereum experiences a significant increase in daily active users, we observe a corresponding uptrend in its price. This suggests that a growing user base may generate increased demand for Ethereum, driving its price higher. Investors and traders notice this positive trend, leading to further investment and price appreciation.
+
+Scenario 2 - Negative Correlation: Conversely, during periods of declining daily active users, we notice a decrease in Ethereum's price. A shrinking user base could signal reduced interest or adoption, which may lead to decreased demand and a lower price. This can trigger sell-offs and further price declines.
+
+By visualizing these relationships in Power BI, stakeholders can quickly grasp how daily active users influence the price of Ethereum, enabling them to make informed decisions based on this key factor. This real-time insight is invaluable for cryptocurrency investors and blockchain project managers seeking to understand and respond to market dynamics.
+
 ![Screenshot_20220612-192627__01](https://github.com/AashayBharadwaj/Exploratory_Data_Analysis/blob/main/BTC_TAB.png)
 
 
